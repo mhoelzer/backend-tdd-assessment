@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=logo.jpg/>
+  <img src=tests.jpg/>
 </p>
 
 # TDD - Creating a cmd line tool
