@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=logo.jpg/>
+</p>
+
 # TDD - Creating a cmd line tool
 
 For this assessment, We'll be using the concept of Test Driven Development (TDD) to created a modified version of the `echo` command line tool:
