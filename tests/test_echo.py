@@ -7,9 +7,7 @@ import echo
 import subprocess
 
 
-# Your test case class goes here
 class TestEcho(unittest.TestCase):
-    # ^^^ we get helpful asserts from ut
     """this tests all the args variants of echo.py"""
 
     # call func, get params, test to see if passse, then pass/fail
@@ -24,44 +22,41 @@ class TestEcho(unittest.TestCase):
         usage = open("./USAGE", "r").read()
         self.assertEquals(stdout, usage)
 
-    # def test_upper(self):
-    #     process = subprocess.Popen(
-    #         ["python", "./echo.py", "-u"],
-    #         stdout=subprocess.PIPE)
-    #     stdout, _ = process.communicate()
-    #     # self.assertEquals(stdout, stdout)
-    #     self.assertTrue(stdout.upper())
-    #     # creatparser and make obj; feed args into; parser.parseargs and see
-    #     # if an arg is a -u, namespace.upper is true
-    
-    # test the -u option 
-    def test_upper_short(self):
-        args = ["-u" or "--upp"]
-        # ^^^ pass into a funciton and get transformed; parser will get -u and
+    def test_upper(self):
+        """checking uppered inputs because we don't want debbie downers"""
+        args = ["-u", "I'm so tIIIred"]
+        # ^^^ pass into a function and get transformed; parser will get -u and
         # translate string to uppercase and send back
         # test whether parser detects the -u flag and makes ns attr of ns.upper
         parser = echo.create_parser()
+        # creatparser and make obj; feed args into; parser.parseargs and see
+        # if an arg is a -u, namespace.upper is true
         namespace = parser.parse_args(args)
         print("namespace is {}".format(namespace))
         self.assertTrue(namespace.upper)
         result = echo.main(args)
-        self.assertEqual(result, "MICHAEL WAS HERE")
-
-    # def test_upper_long(self):
-    #     args = ["--upper", "Michael ewas here"]
-    #     parser = echo.create_parser()
-    #     namespace = parser.parse_args(args)
-    #     print("namespace is {}".format(namespace))
-    #     self.assertTrue(namespace.upper)
-    #     result = echo.main(args)
-    #     self.assertEqual(result, "MICHAEL WAS HERE")
+        self.assertEqual(result, "I'M SO TIIIRED")
         # use python -m unittest discover to test the add-ins here
 
     def test_lower(self):
-        pass
+        """checking lowered inputs because how low can you go?"""
+        args = ["-l", "I'm so tIIIred"]  #
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.lower)
+        result = echo.main(args)
+        self.assertEqual(result, "i'm so tiiired")
 
     def test_title(self):
-        pass
+        """checking titled inputs because titles aren't just for knights"""
+        args = ["-t", "I'm so tIIIred"]
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.title)
+        result = echo.main(args)
+        self.assertEqual(result, "I'M So Tiiired")
 
 
 if __name__ == "__main__":
