@@ -17,8 +17,8 @@ In doing so, you'll be demonstrating a basic understanding of the following:
 - Commonly used [string methods](https://docs.python.org/2/library/stdtypes.html#string-methods)
 
 ## Getting Started
-TDD *starts* with setting up a test harness, and writing the tests FIRST, before writing application code.   Think of the test cases that you will need for the `echo` application that you will build.  For a small project like this, it's sufficient to have a single test case named `test_echo.py`.  In the beginning, all tests should fail (of course, because you haven't written anything!)  However, you are proving out the basic execution paths and setup of your program.  
-Pay special attention to the name of the test module: `test_echo.py`.  When writing test modules, start each module filename with the prefix `test*`.  Many testing frameworks are set up to *auto-discover* test modules that adhere to this naming convention.  Auto-discovery is important-- in a continuous integration environment, your tests will be discovered an run when you attempt to push changes to the repo.  Some  CI/CD pipelines will not allow you to push changes to the repo, if they cannot auto-discover and run your tests.  
+TDD *starts* with setting up a test harness, and writing the tests FIRST, before writing application code. Think of the test cases that you will need for the `echo` application that you will build. For a small project like this, it's sufficient to have a single test case named `test_echo.py`. In the beginning, all tests should fail (of course, because you haven't written anything!). However, you are proving out the basic execution paths and setup of your program. 
+Pay special attention to the name of the test module: `test_echo.py`. When writing test modules, start each module filename with the prefix `test*`. Many testing frameworks are set up to *auto-discover* test modules that adhere to this naming convention. Auto-discovery is important-- in a continuous integration environment, your tests will be discovered an run when you attempt to push changes to the repo. Some CI/CD pipelines will not allow you to push changes to the repo, if they cannot auto-discover and run your tests. 
 Finally, your application code will reside in the `echo.py` file.
 
 When done, you should have a project directory that looks something like this:
@@ -36,7 +36,7 @@ When done, you should have a project directory that looks something like this:
     └── test_echo.py
 ```
 
-Even before you write a single test, you might find it useful to try out your test harness.  Note the use of the `rerun` helper utility.  You can PIP-install this useful tool that watches directory for file changes, and re-runs the command each time it detects a saved edit.  VSCode IDE also has [built-in unit test discovery](https://code.visualstudio.com/docs/python/unit-testing), but you must manually enable it.
+Even before you write a single test, you might find it useful to try out your test harness. Note the use of the `rerun` helper utility. You can PIP-install this useful tool that watches directory for file changes, and re-runs the command each time it detects a saved edit. VSCode IDE also has [built-in unit test discovery](https://code.visualstudio.com/docs/python/unit-testing), but you must manually enable it.
 
 ```bash
 $ pip install rerun
@@ -128,9 +128,9 @@ Now that your tests are complete, implement the program so that the above
 tests pass.
 
 ## Structuring your code
-Remember to separate functionality in your echo.py application.  Notice that many of the tests above are checking to see if the argument parser has done its job correctly by parsing out an option from the command line, and making it available in parser output (the Namespace, or parsed args dict).  
-Therefore, it makes sense to have a function in echo.py whose sole purpose is to deliver back a parser object, that can be stored in your TestEcho class and invoked by calling its parse_args() method with various argument lists.  Such a function might be named `create_parser()`.
-You may also benefit from having a separate `main()` function in your echo.py appliction.  A main() function can be invoked from the command line directly, as well as be imported by your test program and tested independently.
+Remember to separate functionality in your echo.py application. Notice that many of the tests above are checking to see if the argument parser has done its job correctly by parsing out an option from the command line, and making it available in parser output (the Namespace, or parsed args dict). 
+Therefore, it makes sense to have a function in echo.py whose sole purpose is to deliver back a parser object, that can be stored in your TestEcho class and invoked by calling its parse_args() method with various argument lists. Such a function might be named `create_parser()`.
+You may also benefit from having a separate `main()` function in your echo.py appliction. A main() function can be invoked from the command line directly, as well as be imported by your test program and tested independently.
 
 
 ## PR (Pull Request) Workflow for this Assignment
@@ -140,5 +140,4 @@ You may also benefit from having a separate `main()` function in your echo.py ap
 5. Commit your changes, then `git push` the branch back to your own github account.
 5. From your own Github repo, create a pull request (PR) from your `dev` branch back to your own master.
 6. Copy/Paste the URL **link to your PR** as your assignment submission.
-7. Your grader will post code review comments inline with your code, in your github account. Be sure to respond to any comments and make requested changes. **RESUBMIT** a new link to your PR after making changes.  This is the code review iteration cycle.
-
+7. Your grader will post code review comments inline with your code, in your github account. Be sure to respond to any comments and make requested changes. **RESUBMIT** a new link to your PR after making changes. This is the code review iteration cycle.
