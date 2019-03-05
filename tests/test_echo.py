@@ -32,18 +32,37 @@ class TestEcho(unittest.TestCase):
         # creatparser and make obj; feed args into; parser.parseargs and see
         # if an arg is a -u, namespace.upper is true
         namespace = parser.parse_args(args)
-        print("namespace is {}".format(namespace))
+        # print("namespace is {}".format(namespace))
         self.assertTrue(namespace.upper)
         result = echo.main(args)
         self.assertEqual(result, "I'M SO TIIIRED")
         # use python -m unittest discover to test the add-ins here
 
-    def test_lower(self):
-        """checking lowered inputs because how low can you go?"""
-        args = ["-l", "I'm so tIIIred"]  #
+    def test_upper_long(self):
+        """checking uppered inputs because we don't want debbie downers"""
+        args = ["--upper", "I'm so tIIIred"]
         parser = echo.create_parser()
         namespace = parser.parse_args(args)
-        print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.upper)
+        result = echo.main(args)
+        self.assertEqual(result, "I'M SO TIIIRED")
+
+    def test_lower(self):
+        """checking lowered inputs because how low can you go?"""
+        args = ["-l", "I'm so tIIIred"]
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        # print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.lower)
+        result = echo.main(args)
+        self.assertEqual(result, "i'm so tiiired")
+
+    def test_lower_long(self):
+        """checking lowered inputs because how low can you go?"""
+        args = ["--lower", "I'm so tIIIred"]
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        # print("namespace is {}".format(namespace))
         self.assertTrue(namespace.lower)
         result = echo.main(args)
         self.assertEqual(result, "i'm so tiiired")
@@ -53,10 +72,38 @@ class TestEcho(unittest.TestCase):
         args = ["-t", "I'm so tIIIred"]
         parser = echo.create_parser()
         namespace = parser.parse_args(args)
-        print("namespace is {}".format(namespace))
+        # print("namespace is {}".format(namespace))
         self.assertTrue(namespace.title)
         result = echo.main(args)
         self.assertEqual(result, "I'M So Tiiired")
+
+    def test_title_long(self):
+        """checking titled inputs because titles aren't just for knights"""
+        args = ["--title", "I'm so tIIIred"]
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        # print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.title)
+        result = echo.main(args)
+        self.assertEqual(result, "I'M So Tiiired")
+
+    def test_all(self):
+        """checking all input because inclusivity is key"""
+        args = ["-tul", "I'm so tIIIred"]
+        parser = echo.create_parser()
+        namespace = parser.parse_args(args)
+        # print("namespace is {}".format(namespace))
+        self.assertTrue(namespace.upper)
+        self.assertTrue(namespace.lower)
+        self.assertTrue(namespace.title)
+        result = echo.main(args)
+        self.assertEqual(result, "I'M So Tiiired")
+
+    def test_none(self):
+        """checking no inputs because nothing is better than something"""
+        args = ["I'm so tIIIred"]
+        result = echo.main(args)
+        self.assertEqual(result, "I'm so tIIIred")
 
 
 if __name__ == "__main__":
