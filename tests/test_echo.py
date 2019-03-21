@@ -24,6 +24,7 @@ class TestEcho(unittest.TestCase):
 
     def test_upper(self):
         """checking uppered inputs because we don't want debbie downers"""
+        # can check for short or long if want by using asserts, but separating helps with probs
         args = ["-u", "I'm so tIIIred"]
         # ^^^ pass into a function and get transformed; parser will get -u and
         # translate string to uppercase and send back
@@ -98,6 +99,7 @@ class TestEcho(unittest.TestCase):
         self.assertTrue(namespace.title)
         result = echo.main(args)
         self.assertEqual(result, "I'M So Tiiired")
+        # ^^^ the order here is based on how stuff is ordered in main
 
     def test_none(self):
         """checking no inputs because nothing is better than something"""
